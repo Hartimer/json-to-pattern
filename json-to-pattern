@@ -16,6 +16,11 @@ if __name__ == '__main__':
         line = sys.stdin.readline()
         if line == '':
             break
-        obj = json.loads(line)
-        print(pattern.format(**obj))
+        try:
+            obj = json.loads(line)
+            print(pattern.format(**obj))
+            if 'stack_trace' in obj:
+                print(obj['stack_trace'])
+        except Exception:
+            print(line)
         sys.stdout.flush()
